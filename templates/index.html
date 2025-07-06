@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identification des Clients VIP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --vip-gold: #FFD700;
+            --vip-dark: #1A1A2E;
+            --vip-accent: #C5A880;
+            --light-bg: #f8f9fa;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            padding-top: 2rem;
+        }
+        
+        .vip-container {
+            max-width: 800px;
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            border-top: 6px solid var(--vip-gold);
+            margin-bottom: 3rem;
+        }
+        
+        .vip-title {
+            color: var(--vip-dark);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .vip-subtitle {
+            color: #666;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .section-title {
+            color: var(--vip-dark);
+            font-weight: 600;
+            margin: 1.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--vip-gold);
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+        
+        .input-group-text {
+            background-color: #f1f3f5;
+            color: #555;
+            min-width: 80px;
+        }
+        
+        .btn-vip {
+            background-color: var(--vip-dark);
+            color: var(--vip-gold);
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-vip:hover {
+            background-color: var(--vip-gold);
+            color: var(--vip-dark);
+            transform: translateY(-2px);
+        }
+        
+        .result-box {
+            background: linear-gradient(135deg, #fff9e6, #fff0c2);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+            border-left: 4px solid var(--vip-gold);
+        }
+        
+        .vip-badge {
+            background-color: var(--vip-gold);
+            color: var(--vip-dark);
+            font-weight: 700;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+        
+        .progress {
+            height: 10px;
+            background-color: #e9ecef;
+        }
+        
+        .progress-bar {
+            background-color: var(--vip-gold);
+        }
+        
+        @media (max-width: 768px) {
+            .vip-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="vip-container">
+        <h1 class="vip-title"><i class="bi bi-stars me-2"></i>Identification des Clients VIP</h1>
+        <p class="vip-subtitle">Renseignez les informations du client pour évaluer son statut VIP</p>
+        
+        <form method="POST">
+            <h5 class="section-title"><i class="bi bi-clock-history me-2"></i>Fréquence d'achat</h5>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Délai depuis le dernier achat</label>
+                    <div class="input-group">
+                        <input type="number" name="Recency" class="form-control" min="0" required>
+                        <span class="input-group-text">jours</span>
+                    </div>
+                    <small class="text-muted">Nombre de jours depuis la dernière commande</small>
+                </div>
+            </div>
+
+            <h5 class="section-title"><i class="bi bi-cart-check me-2"></i>Montants dépensés</h5>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Dépenses en vins</label>
+                    <div class="input-group">
+                        <input type="number" name="MntWines" step="any" class="form-control" min="0" required>
+                        <span class="input-group-text">€</span>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Dépenses en fruits</label>
+                    <div class="input-group">
+                        <input type="number" name="MntFruits" step="any" class="form-control" min="0" required>
+                        <span class="input-group-text">€</span>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Dépenses en viandes</label>
+                    <div class="input-group">
+                        <input type="number" name="MntMeatProducts" step="any" class="form-control" min="0" required>
+                        <span class="input-group-text">€</span>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Dépenses en poissons</label>
+                    <div class="input-group">
+                        <input type="number" name="MntFishProducts" step="any" class="form-control" min="0" required>
+                        <span class="input-group-text">€</span>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Dépenses en produits sucrés</label>
+                    <div class="input-group">
+                        <input type="number" name="MntSweetProducts" step="any" class="form-control" min="0" required>
+                        <span class="input-group-text">€</span>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Dépenses en or & bijoux</label>
+                    <div class="input-group">
+                        <input type="number" name="MntGoldProds" step="any" class="form-control" min="0" required>
+                        <span class="input-group-text">€</span>
+                    </div>
+                </div>
+            </div>
+
+            <h5 class="section-title"><i class="bi bi-activity me-2"></i>Comportement d'achat</h5>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Achats avec promotions</label>
+                    <input type="number" name="NumDealsPurchases" class="form-control" min="0" required>
+                    <small class="text-muted">Nombre d'achats avec réduction</small>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Achats sur le site web</label>
+                    <input type="number" name="NumWebPurchases" class="form-control" min="0" required>
+                    <small class="text-muted">Commandes passées en ligne</small>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Achats via catalogue</label>
+                    <input type="number" name="NumCatalogPurchases" class="form-control" min="0" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Achats en magasin</label>
+                    <input type="number" name="NumStorePurchases" class="form-control" min="0" required>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <label class="form-label">Visites du site web</label>
+                    <input type="number" name="NumWebVisitsMonth" class="form-control" min="0" required>
+                    <small class="text-muted">Nombre de visites ce mois</small>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-vip">
+                    <i class="bi bi-gem me-2"></i>Évaluer le statut VIP
+                </button>
+            </div>
+        </form>
+
+        {% if prediction is not none %}
+            <div class="result-box">
+                <h5><i class="bi bi-award me-2"></i>Résultat de l'évaluation</h5>
+                <div class="mt-3">
+                    Ce client est : 
+                    <span class="vip-badge">
+                        {{ "VIP 🎖️" if prediction else "Standard" }}
+                        <i class="bi {{ 'bi-star-fill' if prediction else 'bi-person' }} ms-1"></i>
+                    </span>
+                </div>
+                
+                {% if proba is not none %}
+                    <div class="mt-3">
+                        Score VIP : {{ "%.1f"|format(proba * 100) }}%
+                        <div class="progress mt-2">
+                            <div class="progress-bar" role="progressbar" 
+                                 style="width: {{ '%.1f'|format(proba * 100) }}%" 
+                                 aria-valuenow="{{ '%.1f'|format(proba * 100) }}" 
+                                 aria-valuemin="0" 
+                                 aria-valuemax="100">
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                
+                {% if prediction %}
+                    <div class="alert alert-warning mt-3">
+                        <i class="bi bi-lightbulb-fill me-2"></i>
+                        Ce client mérite une attention particulière et des avantages exclusifs !
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>Z
